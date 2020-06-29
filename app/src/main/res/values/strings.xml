@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">PROJECT</string>
-    <string name="message">Message</string>
-    <string name="chat">Chat</string>
-    <string name="profile">Profile</string>
-    <string name="communicate">Communicate</string>
-    <string name="share">Share</string>
-    <string name="send">Send</string>
+    <string name="Attendance">Attendance</string>
+    <string name="Subject">Subject</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="timetable">Timetable</string>
+    <string name="title_activity_timetable">TimetableActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

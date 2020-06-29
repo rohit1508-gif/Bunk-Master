@@ -1,39 +1,22 @@
 package com.example.project;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
-public class Activity2 extends AppCompatActivity{
-    private List<Note> note;
-    private RecyclerView rv;
-    private NoteAdapter adapter;
-    private Context ctx;
 
+public class Activity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    private DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,43 +24,44 @@ public class Activity2 extends AppCompatActivity{
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();
         }
-        FloatingActionButton buttonAddNote = findViewById(R.id.button_add_note);
-        buttonAddNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Activity2.this, SubjectActivity.class);
-                startActivity(i);
-            }
-        });
-        rv = (RecyclerView) findViewById(R.id.recycler_view);
-        rv.setHasFixedSize(true);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        note = new ArrayList<>();
-        ctx = Activity2.this;
-        DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Subject");
-        databasenote.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot npsnapshot : dataSnapshot.getChildren()) {
-                        Note l = npsnapshot.getValue(Note.class);
-                        note.add(l);
-                    }
-                    adapter = new NoteAdapter(note,ctx);
-                    rv.setAdapter(adapter);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new AttendanceFragment()).commit();
+            navigationView.setCheckedItem(R.id.nav_message);
+        }
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);}
+            else{super.onBackPressed();
         Intent intent = new Intent(Activity2.this, Activity2.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("EXIT", true);
         startActivity(intent);
+    }}
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.nav_message:
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AttendanceFragment()).commit();
+                break;
+            case R.id.nav_subject:
+         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SubjectFragment()).commit();
+            case R.id.nav_timetable:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TimetableFragment()).commit();
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

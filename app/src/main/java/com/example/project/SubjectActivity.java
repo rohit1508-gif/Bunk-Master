@@ -1,6 +1,8 @@
 package com.example.project;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -57,7 +59,7 @@ public class SubjectActivity extends AppCompatActivity {
         Note note = new Note(id,subject,total,present,min);
         databasenote.child(id).setValue(note);
         Toast.makeText(this, "Subject added", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getApplicationContext(),Activity2.class);
-        startActivity(intent);
+        Intent ia= new Intent(SubjectActivity.this,Activity2.class);
+        startActivity(ia);
     }
 }
