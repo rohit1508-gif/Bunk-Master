@@ -8,32 +8,42 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class ViewPagerAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> fragmentList = new ArrayList<>();
-    private final List<String> FragmentListTitles = new ArrayList<>();
-    public ViewPagerAdapter(FragmentManager fragmentManager) {
-        super(fragmentManager);
+    int mNumOfTabs;
+    public ViewPagerAdapter(FragmentManager fm, int NoofTabs){
+        super(fm);
+        this.mNumOfTabs = NoofTabs;
     }
-
-
-    @Override
-    public Fragment getItem(int position) {
-        return fragmentList.get(position);
-    }
-
     @Override
     public int getCount() {
-        return FragmentListTitles.size();
+        return mNumOfTabs;
     }
-
-    @Nullable
     @Override
-    public CharSequence getPageTitle(int position) {
-        return FragmentListTitles.get(position);
-    }
-    public void AddFragment(Fragment fragment, String Title){
-        fragmentList.add(fragment);
-        FragmentListTitles.add(Title);
+    public Fragment getItem(int position){
+        switch (position){
+            case 0:
+                MondayFragment Mon = new MondayFragment();
+                return Mon;
+            case 1:
+                TuesdayFragment Tue = new TuesdayFragment();
+                return Tue;
+            case 2:
+                WednesdayFragment Wed = new WednesdayFragment();
+                return Wed;
+            case 3:
+                ThursdayFragment Thu = new ThursdayFragment();
+                return Thu;
+            case 4:
+                FridayFragment Fri = new FridayFragment();
+                return Fri;
+            case 5:
+                SaturdayFragment Sat = new SaturdayFragment();
+                return Sat;
+            case 6:
+                SundayFragment Sun = new SundayFragment();
+                return Sun;
+            default:
+                return null;
+        }
     }
 }

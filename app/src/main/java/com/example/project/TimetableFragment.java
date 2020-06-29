@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -16,18 +17,33 @@ public class TimetableFragment extends Fragment {
     private ViewPager viewpager;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_timetable, container, false);
-        tabLayout =(TabLayout) view.findViewById(R.id.tablayout_id);
-        viewpager =(ViewPager) view.findViewById(R.id.viewpager_id);
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
-        adapter.AddFragment(new MondayFragment(),"Mon");
-        adapter.AddFragment(new TuesdayFragment(),"Tue");
-        adapter.AddFragment(new WednesdayFragment(),"Wed");
-        adapter.AddFragment(new ThursdayFragment(),"Thu");
-        adapter.AddFragment(new FridayFragment(),"Fri");
-        adapter.AddFragment(new SaturdayFragment(),"Sat");
-        adapter.AddFragment(new SundayFragment(),"Sun");
-        viewpager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewpager);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tablayout_id);
+        tabLayout.addTab(tabLayout.newTab().setText("Mon"));
+        tabLayout.addTab(tabLayout.newTab().setText("Tue"));
+        tabLayout.addTab(tabLayout.newTab().setText("Wed"));
+        tabLayout.addTab(tabLayout.newTab().setText("Thu"));
+        tabLayout.addTab(tabLayout.newTab().setText("Fri"));
+        tabLayout.addTab(tabLayout.newTab().setText("Sat"));
+        tabLayout.addTab(tabLayout.newTab().setText("Sun"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        final ViewPager viewPager =(ViewPager)view.findViewById(R.id.viewpager_id);
+        ViewPagerAdapter tabsAdapter = new ViewPagerAdapter(getFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(tabsAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
         return view;
 }
 }
