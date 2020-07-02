@@ -61,5 +61,6 @@ public class AddSubjectActivity extends AppCompatActivity {
         Note1 note = new Note1(id,s,a,b,day);
         FirebaseDatabase.getInstance().getReference(day).child(id).setValue(note);
         Toast.makeText(this,"Subject Added",Toast.LENGTH_SHORT).show();
+        finish();
     }
 }

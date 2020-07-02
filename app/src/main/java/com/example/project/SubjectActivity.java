@@ -59,7 +59,6 @@ public class SubjectActivity extends AppCompatActivity {
         Note note = new Note(id,subject,total,present,min);
         databasenote.child(id).setValue(note);
         Toast.makeText(this, "Subject added", Toast.LENGTH_SHORT).show();
-        Intent ia= new Intent(SubjectActivity.this,Activity2.class);
-        startActivity(ia);
+        finish();
     }
 }

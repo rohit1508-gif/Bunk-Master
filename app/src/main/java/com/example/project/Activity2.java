@@ -58,8 +58,10 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
                 break;
             case R.id.nav_subject:
          getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SubjectFragment()).commit();
+         break;
             case R.id.nav_timetable:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TimetableFragment()).commit();
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;

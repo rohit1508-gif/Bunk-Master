@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -27,10 +26,10 @@ public class TimetableFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Sun"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         final ViewPager viewPager =(ViewPager)view.findViewById(R.id.viewpager_id);
-        ViewPagerAdapter tabsAdapter = new ViewPagerAdapter(getFragmentManager(), tabLayout.getTabCount());
+        ViewPagerAdapter tabsAdapter = new ViewPagerAdapter(getFragmentManager(),tabLayout.getTabCount());
         viewPager.setAdapter(tabsAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
@@ -44,6 +43,7 @@ public class TimetableFragment extends Fragment {
 
             }
         });
+        viewPager.getAdapter().notifyDataSetChanged();
         return view;
 }
 }

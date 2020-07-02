@@ -14,11 +14,12 @@ import android.widget.Toast;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class EditActivity extends AppCompatActivity {
-    String Id;
+    String id;
     EditText editText,editText2,editText3,editText4;
     TextView textView,textView2,textView3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
         editText = findViewById(R.id.editText);
@@ -26,15 +27,15 @@ public class EditActivity extends AppCompatActivity {
         editText3 = findViewById(R.id.editText3);
         editText4 = findViewById(R.id.editText4);
         Intent iw = getIntent();
-        Id = iw.getStringExtra("Id");
-        String Subject = iw.getStringExtra("Subject");
-        int Total = iw.getIntExtra("Total",0);
-        int Present = iw.getIntExtra("Present",0);
-        int Min = iw.getIntExtra("Min",0);
-        editText.setText(Subject);
-        editText3.setText(Total);
-        editText4.setText(Min);
-        editText2.setText(Present);
+        id = iw.getStringExtra("Id");
+        String subject = iw.getStringExtra("Subject");
+        String total = iw.getStringExtra("Total");
+        String present = iw.getStringExtra("Present");
+        String min = iw.getStringExtra("Min");
+        editText3.setText(total);
+        editText4.setText(min);
+        editText2.setText(present);
+        editText.setText(subject);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,12 +58,11 @@ public class EditActivity extends AppCompatActivity {
         int b = Integer.parseInt(editText2.getText().toString());
         int c = Integer.parseInt(editText3.getText().toString());
         int d = Integer.parseInt(editText4.getText().toString());
-        FirebaseDatabase.getInstance().getReference("Subject").child(Id).child("subject").setValue(a);
-        FirebaseDatabase.getInstance().getReference("Subject").child(Id).child("present").setValue(b);
-        FirebaseDatabase.getInstance().getReference("Subject").child(Id).child("total").setValue(c);
-        FirebaseDatabase.getInstance().getReference("Subject").child(Id).child("min").setValue(d);
+        FirebaseDatabase.getInstance().getReference("Subject").child(id).child("subject").setValue(a);
+        FirebaseDatabase.getInstance().getReference("Subject").child(id).child("present").setValue(b);
+        FirebaseDatabase.getInstance().getReference("Subject").child(id).child("total").setValue(c);
+        FirebaseDatabase.getInstance().getReference("Subject").child(id).child("min").setValue(d);
         Toast.makeText(this, "Subject edited", Toast.LENGTH_SHORT).show();
-        Intent ir= new Intent(EditActivity.this,Activity2.class);
-        startActivity(ir);
+        finish();
     }
 }
