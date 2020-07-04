@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Adapter;
 
 
 import android.app.AlertDialog;
@@ -16,6 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project.Activity.CalenderActivity;
+import com.example.project.R;
+import com.example.project.note.Note;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -144,7 +147,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
         holder.mview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context,CalenderActivity.class);
+                Intent i = new Intent(context, CalenderActivity.class);
                 context.startActivity(i);
             }
         });

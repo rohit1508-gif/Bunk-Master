@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Activity;
 
 
 import androidx.annotation.NonNull;
@@ -11,6 +11,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.project.Fragment.AttendanceFragment;
+import com.example.project.Fragment.SubjectFragment;
+import com.example.project.Fragment.TimetableFragment;
+import com.example.project.R;
 import com.google.android.material.navigation.NavigationView;
 
 

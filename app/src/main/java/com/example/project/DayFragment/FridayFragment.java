@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.DayFragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project.Activity.AddSubjectActivity;
+import com.example.project.note.Note1;
+import com.example.project.Adapter.NoteAdapterMonday;
+import com.example.project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,22 +27,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TuesdayFragment extends Fragment {
+public class FridayFragment extends Fragment {
     private List<Note1> mnote;
     private RecyclerView rv1;
     private NoteAdapterMonday adapter;
     private Context ctx;
     Button addSubject;
-    public TuesdayFragment(){}
+    public FridayFragment(){}
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_tuesday, container, false);
+        View view =  inflater.inflate(R.layout.fragment_friday, container, false);
         addSubject = (Button) view.findViewById(R.id.addsubject);
         rv1= (RecyclerView) view.findViewById(R.id.recycler_view);
         rv1.setHasFixedSize(true);
         rv1.setLayoutManager(new LinearLayoutManager(getActivity()));
         mnote = new ArrayList<>();
         ctx = getActivity();
-        DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Tuesday");
+        DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Friday");
         databasenote.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -58,11 +62,12 @@ public class TuesdayFragment extends Fragment {
         addSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iv= new Intent(getActivity(),AddSubjectActivity.class);
-                iv.putExtra("Day","Tuesday");
+                Intent iv= new Intent(getActivity(), AddSubjectActivity.class);
+                iv.putExtra("Day","Friday");
                 startActivity(iv);
             }
         });
         return view;
     }
+
 }

@@ -1,8 +1,16 @@
-package com.example.project;
+package com.example.project.Adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.example.project.DayFragment.FridayFragment;
+import com.example.project.DayFragment.MondayFragment;
+import com.example.project.DayFragment.SaturdayFragment;
+import com.example.project.DayFragment.SundayFragment;
+import com.example.project.DayFragment.ThursdayFragment;
+import com.example.project.DayFragment.TuesdayFragment;
+import com.example.project.DayFragment.WednesdayFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     int mNumOfTabs;

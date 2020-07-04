@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.note;
 
 public class Note1 {
     String id;

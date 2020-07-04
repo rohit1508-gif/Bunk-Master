@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.project.Adapter.ViewPagerAdapter;
+import com.example.project.R;
 import com.google.android.material.tabs.TabLayout;
 
 public class TimetableFragment extends Fragment {

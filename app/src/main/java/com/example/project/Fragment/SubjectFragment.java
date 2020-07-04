@@ -1,12 +1,10 @@
-package com.example.project;
+package com.example.project.Fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,53 +12,44 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project.Adapter.NoteAdapter1;
+import com.example.project.R;
+import com.example.project.note.Note;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThursdayFragment extends Fragment {
-    private List<Note1> mnote;
+public class SubjectFragment extends Fragment {
+    private List<Note> anote;
     private RecyclerView rv1;
-    private NoteAdapterMonday adapter;
+    private NoteAdapter1 adapter;
     private Context ctx;
-    Button addSubject;
-    public ThursdayFragment(){}
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_thursday, container, false);
-        addSubject = (Button) view.findViewById(R.id.addsubject);
-        rv1= (RecyclerView) view.findViewById(R.id.recycler_view);
+        View view =  inflater.inflate(R.layout.fragment_subject, container, false);
+        rv1= (RecyclerView) view.findViewById(R.id.recycler_view1);
         rv1.setHasFixedSize(true);
         rv1.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mnote = new ArrayList<>();
+        anote = new ArrayList<>();
         ctx = getActivity();
-        DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Thursday");
+        DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Subject");
         databasenote.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot npsnapshot : dataSnapshot.getChildren()) {
-                        Note1 l = npsnapshot.getValue(Note1.class);
-                        mnote.add(l);
+                        Note l = npsnapshot.getValue(Note.class);
+                        anote.add(l);
                     }
-                    adapter = new NoteAdapterMonday(mnote,ctx);
+                    adapter = new NoteAdapter1(anote,ctx);
                     rv1.setAdapter(adapter);
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-        addSubject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iv= new Intent(getActivity(),AddSubjectActivity.class);
-                iv.putExtra("Day","Thursday");
-                startActivity(iv);
             }
         });
         return view;

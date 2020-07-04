@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -14,6 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project.Activity.EditActivity;
+import com.example.project.R;
+import com.example.project.note.Note;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
@@ -72,7 +75,7 @@ public class NoteAdapter1 extends RecyclerView.Adapter<NoteAdapter1.ViewHolder> 
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent iw = new Intent(context,EditActivity.class);
+                                Intent iw = new Intent(context, EditActivity.class);
                                 iw.putExtra("Subject",no.getSubject());
                                 iw.putExtra("Id",no.getId());
                                 iw.putExtra("Present",no.getPresent());

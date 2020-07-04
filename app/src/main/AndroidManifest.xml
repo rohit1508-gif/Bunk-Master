@@ -9,14 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddSubjectActivity"></activity>
-        <activity android:name=".EditActivity" />
-        <activity android:name=".CalenderActivity" />
-        <activity android:name=".SubjectActivity" />
+        <activity android:name=".Activity.AddSubjectActivity"></activity>
+        <activity android:name=".Activity.EditActivity" />
+        <activity android:name=".Activity.CalenderActivity" />
+        <activity android:name=".Activity.SubjectActivity" />
         <activity
-            android:name=".Activity2"
+            android:name=".Activity.Activity2"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

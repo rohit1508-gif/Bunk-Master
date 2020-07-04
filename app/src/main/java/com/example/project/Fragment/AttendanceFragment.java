@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project.Adapter.NoteAdapter;
+import com.example.project.R;
+import com.example.project.Activity.SubjectActivity;
+import com.example.project.note.Note;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,44 +27,43 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaturdayFragment extends Fragment {
-    private List<Note1> mnote;
-    private RecyclerView rv1;
-    private NoteAdapterMonday adapter;
+public class AttendanceFragment extends Fragment {
+    private List<Note> note;
+    private RecyclerView rv;
+    private NoteAdapter adapter;
     private Context ctx;
-    Button addSubject;
-    public SaturdayFragment(){}
+    @Nullable
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_saturday, container, false);
-        addSubject = (Button) view.findViewById(R.id.addsubject);
-        rv1= (RecyclerView) view.findViewById(R.id.recycler_view);
-        rv1.setHasFixedSize(true);
-        rv1.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mnote = new ArrayList<>();
+        View view = inflater.inflate(R.layout.fragment_attendance, container, false);
+        FloatingActionButton buttonAddNote = view.findViewById(R.id.button_add_note);
+        buttonAddNote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), SubjectActivity.class);
+                startActivity(i);
+            }
+        });
+        rv = (RecyclerView) view.findViewById(R.id.recycler_view);
+        rv.setHasFixedSize(true);
+        rv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        note = new ArrayList<>();
         ctx = getActivity();
-        DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Saturday");
+        DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Subject");
         databasenote.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot npsnapshot : dataSnapshot.getChildren()) {
-                        Note1 l = npsnapshot.getValue(Note1.class);
-                        mnote.add(l);
+                        Note l = npsnapshot.getValue(Note.class);
+                        note.add(l);
                     }
-                    adapter = new NoteAdapterMonday(mnote,ctx);
-                    rv1.setAdapter(adapter);
+                    adapter = new NoteAdapter(note,ctx);
+                    rv.setAdapter(adapter);
                 }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-        addSubject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iv= new Intent(getActivity(),AddSubjectActivity.class);
-                iv.putExtra("Day","Saturday");
-                startActivity(iv);
             }
         });
         return view;

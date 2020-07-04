@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.project.R;
+import com.example.project.note.Note1;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddSubjectActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project.R;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class EditActivity extends AppCompatActivity {

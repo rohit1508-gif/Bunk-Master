@@ -1,4 +1,4 @@
-package com.example.project;
+package com.example.project.DayFragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.project.Activity.AddSubjectActivity;
+import com.example.project.note.Note1;
+import com.example.project.Adapter.NoteAdapterMonday;
+import com.example.project.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,7 +62,7 @@ public class WednesdayFragment extends Fragment {
         addSubject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iv= new Intent(getActivity(),AddSubjectActivity.class);
+                Intent iv= new Intent(getActivity(), AddSubjectActivity.class);
                 iv.putExtra("Day","Wednesday");
                 startActivity(iv);
             }
