@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Activity.EditActivity">
+    tools:context=".Activity.EditActivity"
+    android:background="#292828">
     <TextView
         android:id="@+id/textView"
         android:layout_width="112dp"
@@ -16,19 +17,23 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/design_default_color_background"/>
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="280dp"
         android:layout_height="46dp"
+        android:layout_marginStart="6dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="537dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        android:textColor="@color/design_default_color_background"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -41,18 +46,22 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/design_default_color_background"/>
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="122dp"
         android:layout_height="41dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="476dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/design_default_color_background"
+        app:layout_constraintStart_toEndOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView3"
@@ -64,7 +73,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/design_default_color_background"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -76,27 +86,34 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/design_default_color_background"/>
 
     <EditText
         android:id="@+id/editText3"
         android:layout_width="141dp"
         android:layout_height="47dp"
+        android:layout_marginStart="12dp"
         android:layout_marginEnd="19dp"
         android:layout_marginBottom="416dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        android:textColor="@color/design_default_color_background"/>
 
     <EditText
         android:id="@+id/editText4"
         android:layout_width="93dp"
         android:layout_height="53dp"
+        android:layout_marginStart="12dp"
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="348dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        android:textColor="@color/design_default_color_background"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
