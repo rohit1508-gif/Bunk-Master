@@ -43,9 +43,10 @@ public class SaturdayFragment extends Fragment {
         mnote = new ArrayList<>();
         ctx = getActivity();
         DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Saturday");
-        databasenote.addListenerForSingleValueEvent(new ValueEventListener() {
+        databasenote.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mnote.clear();
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot npsnapshot : dataSnapshot.getChildren()) {
                         Note1 l = npsnapshot.getValue(Note1.class);

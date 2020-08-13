@@ -36,9 +36,10 @@ public class SubjectFragment extends Fragment {
         anote = new ArrayList<>();
         ctx = getActivity();
         DatabaseReference databasenote = FirebaseDatabase.getInstance().getReference("Subject");
-        databasenote.addListenerForSingleValueEvent(new ValueEventListener() {
+        databasenote.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                anote.clear();
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot npsnapshot : dataSnapshot.getChildren()) {
                         Note l = npsnapshot.getValue(Note.class);
