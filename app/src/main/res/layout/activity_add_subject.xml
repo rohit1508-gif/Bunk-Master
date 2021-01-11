@@ -59,7 +59,7 @@
     <TextView
         android:id="@+id/textView8"
         android:layout_width="138dp"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginBottom="409dp"
         android:gravity="center"

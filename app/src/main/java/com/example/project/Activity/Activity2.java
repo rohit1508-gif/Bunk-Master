@@ -21,6 +21,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class Activity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawer;
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,8 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
         if (getIntent().getBooleanExtra("EXIT", false)) {
             finish();
         }
+        Intent i  = getIntent();
+        username = i.getStringExtra("username");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -53,7 +56,6 @@ public class Activity2 extends AppCompatActivity implements NavigationView.OnNav
         intent.putExtra("EXIT", true);
         startActivity(intent);
     }}
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch(item.getItemId()){

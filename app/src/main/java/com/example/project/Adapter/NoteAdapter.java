@@ -24,11 +24,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
     private Context context;
     private List<Note> note;
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+    private Calendar c = Calendar.getInstance();
+    private String date = sdf.format(c.getTime());
    public NoteAdapter(List<Note> note, Context context){
         this.note = note;
         this.context = context;
@@ -112,6 +117,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
                                     t=t+1;
                                     FirebaseDatabase.getInstance().getReference("Subject").child(no.getId()).child("present").setValue(p);
                                     FirebaseDatabase.getInstance().getReference("Subject").child(no.getId()).child("total").setValue(t);
+                                    FirebaseDatabase.getInstance().getReference("Subject").child(no.getId()).child("Date").child(date).child("attendance").setValue("Present");
                                     notifyDataSetChanged();
                                 }
                             }
@@ -134,6 +140,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
                                     int t = no.getTotal();
                                     t=t+1;
                                     FirebaseDatabase.getInstance().getReference("Subject").child(no.getId()).child("total").setValue(t);
+                                    FirebaseDatabase.getInstance().getReference("Subject").child(no.getId()).child("Date").child(date).child("attendance").setValue("Present");
                                 }
                             }
 
@@ -148,6 +155,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, CalenderActivity.class);
+                i.putExtra("subjectid",no.getId());
                 context.startActivity(i);
             }
         });
